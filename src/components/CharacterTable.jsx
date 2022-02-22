@@ -14,15 +14,19 @@ console.log(props.character)
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Name data</td>
-                    <td>Game data</td>
-                    <td>Year data</td>
-                    <td>
-                        <button className="button muted-button">Edit</button>
-                        <button className="button muted-button">Delete</button>
-                    </td>
-                </tr>
+                {
+                    props.character.map(character =>(
+                        <tr key={character.id}>
+                            <td>{character.name}</td>
+                            <td>{character.game}</td>
+                            <td>{character.year}</td>
+                            <td>
+                                <button className="button muted-button">Edit</button>
+                                <button className="button muted-button">Delete</button>
+                            </td>
+                        </tr>
+                    ))
+                }
             </tbody>
         </table>
     );
