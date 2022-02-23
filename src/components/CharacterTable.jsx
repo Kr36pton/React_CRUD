@@ -14,7 +14,7 @@ console.log(props.character)
                 </tr>
             </thead>
             <tbody>
-                {
+                {props.character.length > 0 ? (
                     props.character.map(character =>(
                         <tr key={character.id}>
                             <td>{character.name}</td>
@@ -26,7 +26,11 @@ console.log(props.character)
                             </td>
                         </tr>
                     ))
-                }
+                ) : (
+                    <tr>
+                        <td colSpan={3}>No Characters</td>
+                    </tr>
+                )}
             </tbody>
         </table>
     );

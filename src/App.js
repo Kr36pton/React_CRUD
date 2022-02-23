@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import UserTable from './components/CharacterTable';
+import AddCharacterForm from './components/AddCharacterForm';
 
 function App() {
   const characterData = [
@@ -9,7 +10,17 @@ function App() {
     { id: uuidv4(), name: 'Ryu', game: 'Street Fighter', year: '1987' },
   ]
 
+  //Estate
   const [character, setCharacter] = useState(characterData)
+
+  //Agregar personaje
+  const addCharacter = (character) =>{
+    character.id = uuidv4()
+    setCharacter([
+      ...characterData,
+      character
+    ])
+  }
 
   return (
     <div className="container">
@@ -17,6 +28,7 @@ function App() {
       <div className="flex-row">
         <div className="flex-large">
           <h2>Add character</h2>
+          <AddCharacterForm addCharacter={addCharacter}/>
         </div>
         <div className="flex-large">
           <h2>View character</h2>
