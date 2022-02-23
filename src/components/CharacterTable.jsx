@@ -22,13 +22,13 @@ console.log(props.character)
                             <td>{character.year}</td>
                             <td>
                                 <button className="button muted-button">Edit</button>
-                                <button className="button muted-button">Delete</button>
+                                <button className="button muted-button" onClick={()=>{props.deleteCharacter(character.id)}}>Delete</button>
                             </td>
                         </tr>
                     ))
                 ) : (
                     <tr>
-                        <td colSpan={3}>No Characters</td>
+                        <td colSpan={4}>No Characters</td>
                     </tr>
                 )}
             </tbody>

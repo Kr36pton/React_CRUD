@@ -22,6 +22,12 @@ function App() {
     ])
   }
 
+  //Eliminar personaje
+  const deleteCharacter = (id) =>{
+    //console.log(id)
+    setCharacter(character.filter((character) => character.id !== id))
+  }
+
   return (
     <div className="container">
       <h1>CRUD App with Hooks</h1>
@@ -32,7 +38,7 @@ function App() {
         </div>
         <div className="flex-large">
           <h2>View character</h2>
-          <UserTable character={character}/>
+          <UserTable character={character} deleteCharacter={deleteCharacter}/>
         </div>
       </div>
     </div>
