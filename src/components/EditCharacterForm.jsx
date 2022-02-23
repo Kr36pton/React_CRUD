@@ -13,10 +13,9 @@ const EditCharacterForm = (props) => {
   setValue('year', props.currentCharacter.year)
 
   const onSubmit = (data, e) => {
-      //console.log(data)
-      //data.id = null
-      props.addCharacter(data)
-      e.target.reset();
+    data.id = props.currentCharacter.id
+    props.updateCharacter(props.currentCharacter.id, data)
+    e.target.reset();
   }
 
   return (  
