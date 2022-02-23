@@ -21,7 +21,7 @@ console.log(props.character)
                             <td>{character.game}</td>
                             <td>{character.year}</td>
                             <td>
-                                <button className="button muted-button">Edit</button>
+                                <button className="button muted-button" onClick={()=>{props.editRow(character)}}>Edit</button>
                                 <button className="button muted-button" onClick={()=>{props.deleteCharacter(character.id)}}>Delete</button>
                             </td>
                         </tr>

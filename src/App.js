@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import UserTable from './components/CharacterTable';
+import CharacterTable from './components/CharacterTable';
 import AddCharacterForm from './components/AddCharacterForm';
+import EditCharacterForm from './components/EditCharacterForm';
 
 function App() {
   const characterData = [
@@ -28,17 +29,51 @@ function App() {
     setCharacter(character.filter((character) => character.id !== id))
   }
 
+  //Editar personaje
+  const [editing, setEditing] = useState(false)
+
+  const [currentCharacter, setCurrentCharacter] = useState({ 
+    id: null, name: '', game: '', year: '' 
+  })
+
+  const editRow = (character) => {
+    setEditing(true) 
+    setCurrentCharacter({ id: character.id, name: character.name, game: character.game, year: character.year })
+  }
+
+  const updateCharacter = (id, updatedCharacter) => {
+    setEditing(false)
+    setCharacter(character.map(character => (character.id === id ? updatedCharacter : character)))
+  }
+
   return (
     <div className="container">
       <h1>CRUD App with Hooks</h1>
       <div className="flex-row">
         <div className="flex-large">
-          <h2>Add character</h2>
-          <AddCharacterForm addCharacter={addCharacter}/>
+          {editing ? (
+            <div>
+              <h2>Edit character</h2>
+              <EditCharacterForm 
+              setEditing={setEditing} 
+              currentCharacter={currentCharacter} 
+              updateCharacter={updateCharacter}
+              />
+            </div>
+            ) : (
+              <div>
+                <h2>Add character</h2>
+                <AddCharacterForm addCharacter={addCharacter}/>
+              </div>
+            )}
         </div>
         <div className="flex-large">
           <h2>View character</h2>
-          <UserTable character={character} deleteCharacter={deleteCharacter}/>
+          <CharacterTable 
+          character={character} 
+          deleteCharacter={deleteCharacter} 
+          editRow={editRow}
+          />
         </div>
       </div>
     </div>
